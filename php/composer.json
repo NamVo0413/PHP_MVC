@@ -1,0 +1,15 @@
+{
+    "name": "asus/php",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Namvo-1304",
+            "email": "55818180+Namvo-1304@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
