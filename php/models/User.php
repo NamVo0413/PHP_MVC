@@ -5,8 +5,9 @@ namespace app\models;
 #Define all attribute of that model you are going to use it
 use app\core\DBModel;
 use app\core\Model;
+use app\core\UserModel;
 
-class User extends DBModel
+class User extends UserModel
 {
     public string $email ='';
     public string $pass ='';
@@ -37,5 +38,8 @@ class User extends DBModel
     public function columnsList(): array
     {
         return ['email','pass'];
+    }
+    public function getDisplayName():string{
+        return $this->email;
     }
 }

@@ -1,4 +1,8 @@
-<?php ?>
+<?php
+    /*echo '<pre>';
+    var_dump(\app\core\Application::$app->user->getDisplayName());
+    echo '</pre>';*/
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,6 +31,7 @@
                     <a class="nav-link" href="/contact">Contact</a>
                 </li>
             </ul>
+            <?php if(\app\core\Application::isGuest()): ?>
             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Login</a>
@@ -35,11 +40,25 @@
                     <a class="nav-link" href="/register">Register</a>
                 </li>
             </ul>
-
+            <?php else: ?>
+            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Welcome <?php \app\core\Application::$app->user->getDisplayName() ?>
+                        (LogOut)
+                    </a>
+                </li>
+            </ul>
+            <?php endif; ?>
         </div>
     </div>
 </nav>
+<?php if(\app\core\Application::$app->session->getFlash('success')):?>
+<div class="alert alert-success">
+    <?php echo \app\core\Application::$app->session->getFlash('success') ?>
+</div>
+<?php endif; ?>
 {{content}}
+
 
 <!-- Optional JavaScript; choose one of the two! -->
 

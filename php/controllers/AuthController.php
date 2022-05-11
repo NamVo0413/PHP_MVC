@@ -34,6 +34,7 @@ class AuthController extends Controller
             echo '</pre';
             exit;*/
             if($user->validate()&& $user->save()){
+                Application::$app->session->setFlash('success','Thanks for register');
                 #After register completed return to home page
                 Application::$app->response->redirect('/');
             }
@@ -49,5 +50,9 @@ class AuthController extends Controller
         return $this->render('register',[
             'model'=>$user
         ]);
+    }
+    public function logout(Request $request,Response $response){
+        Application::$app->logout();
+        $response->redirect('/');
     }
 }
