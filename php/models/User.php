@@ -16,7 +16,13 @@ class User extends DBModel
         // return the name of table that will be using
         return  'user';
     }
+    public function primaryKey(): string
+    {
+        // TODO: Implement primaryKey() method.
+        return 'id';
+    }
 
+    #return function save
     public function save(){
         return parent::save();
     }

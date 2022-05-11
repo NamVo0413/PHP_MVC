@@ -1,0 +1,2 @@
+When you create a new website/function you need to create a model for it
+ex: If you want to create login website you need to create login model for it not using user model

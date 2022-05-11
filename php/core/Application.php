@@ -5,6 +5,7 @@ namespace app\core;
 class Application
 {
     public Database $db;
+    public ?DBModel $user;
     public static string $ROOT_DIR;
     public Router $router;
     public Request $request;
@@ -30,5 +31,10 @@ class Application
     public function setController(Controller $controller): void
     {
         $this->controller = $controller;
+    }
+    public function login(DBModel $user){
+        $this->user=$user;
+        $primaryKey=$user->primaryKey();
+        $primaryValue=$user->{$primaryKey};
     }
 }
