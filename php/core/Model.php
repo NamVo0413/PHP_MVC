@@ -32,12 +32,18 @@ abstract class Model
                 if($ruleName===self::RULE_REQUIRED&&!$value){
                     $this->addError($attribute,self::RULE_REQUIRED);
                 }
+                if($ruleName===self::RULE_EMAIL&&!filter_var($value,FILTER_VALIDATE_EMAIL)){
+                    $this->addError($attribute,self::RULE_EMAIL);
+                }
             }
         }
         return empty($this->errors);
     }
-    public function addError(string $attribute,string $rule){
+    public function addError(string $attribute,string $rule,$params=[]){
         $message=$this->errorMessages()[$rule]??'';
+        foreach ($params as $key=>$value){
+            $message=str_replace("{{$key}}",$value,$message);
+        }
         $this->errors[$attribute][]=$message;
     }
     public function errorMessages(){
@@ -47,4 +53,11 @@ abstract class Model
             self::RULE_PASSWORD=>'Please put an password'
         ];
     }
+    public function hasError($attribute){
+        return $this->errors[$attribute]??false;
+    }
+    public function getFirstError($attribute){
+        return $this->errors[$attribute][0]??false;
+    }
+    #end of validate function
 }
