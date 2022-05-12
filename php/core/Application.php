@@ -26,8 +26,12 @@ class Application
         $this->userClass=$config['userClass'];
         $primaryValue=$this->session->get('user');
         if($primaryValue){
-            $primaryKey=$this->userClass::primaryKey();
-            $this->user=$this->userClass::findOne([$primaryKey=>$primaryValue]);
+            /*echo '<pre>';
+            var_dump($this);
+            echo '</pre>';*/
+            $userClass=new $this->userClass;
+            $primaryKey=$userClass->primaryKey();
+            $this->user=$userClass->findOne([$primaryKey=>$primaryValue]);
         }
         else{
             $this->user=null;
