@@ -67,7 +67,7 @@ class ProductController extends Controller
 
             $product =new product();
             $product->load($productData);
-            $errors=$product->save();
+            $errors=$product->save_Create();
             /*echo '<pre>';
             var_dump($errors);
             echo '</pre>';*/
@@ -108,7 +108,7 @@ class ProductController extends Controller
             $productData['Number']=$_POST['Number'];
             $product =new product();
             $product->load($productData);
-            $errors=$product->save();
+            $errors=$product->save_Update();
             if(empty($errors)){
                 header('Location: /index');
                 exit;

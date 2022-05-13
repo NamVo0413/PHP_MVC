@@ -26,23 +26,30 @@ class product
         $this->Number=$data['Number'];
     }
 
-    public function save()
+    public function save_Update()
     {
         $errors = [];
+        $db=database::$db;
         if (empty($errors)) {
-            $db=database::$db;
             if($this->PlayerID){
                 $db->updateProduct($this);
-            }
-            else{
-                $db->createProducts($this);
-
             }
         }
         /*echo '<pre>';
         var_dump($db);
         echo '</pre>';
         exit;*/
+        return $errors;
+    }
+    public function save_Create()
+    {
+        $errors = [];
+        $db=database::$db;
+        /*echo '<pre>';
+        var_dump($db);
+        echo '</pre>';
+        exit;*/
+        $db->createProducts($this);
         return $errors;
     }
 }
