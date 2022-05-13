@@ -4,6 +4,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use app\core\Application;
 use app\controllers\SiteController;
 use app\controllers\AuthController;
+use app\router;
+use app\controllers\ProductController;
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 $config=[
@@ -29,4 +31,10 @@ $app->router->get('/register',[AuthController::class,'register']);
 $app->router->post('/register',[AuthController::class,'register']);
 #logout
 $app->router->get('/logout',[AuthController::class,'logout']);
+$app->router->get('/index',[ProductController::class,'indexFalse']);
+if(!Application::isGuest()){
+    $router= new router();
+    $router->get('/index',[new ProductController(),'index']);
+    $router->resolve();
+}
 $app->run();

@@ -28,4 +28,7 @@ class SiteController extends Controller
     public function register(){
         return $this->render('register');
     }
+    public function index(){
+        return $this->render('index');
+    }
 }
