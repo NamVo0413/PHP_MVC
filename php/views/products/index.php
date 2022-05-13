@@ -1,10 +1,10 @@
-<h1>Product CRUD</h1>
+<h1>Player CRUD</h1>
 <p>
-    <a href="/products/create" class="btn btn-success">Create Product</a>
+    <a href="/index/create" class="btn btn-success">Create Player</a>
 </p>
 <form>
     <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search Product" name="search" value="<?php echo $search ?>">
+        <input type="text" class="form-control" placeholder="Search Player" name="search" value="<?php echo $search ?>">
         <button class="btn btn-outline-secondary" type="submit">Search</button>
     </div>
 </form>
@@ -34,12 +34,12 @@
         <td><?php echo $item['Nationality'] ?></td>
         <td><?php echo $item['Number'] ?></td>
         <td>
-            <a href="/products/update?id=<?php echo $item['PlayerID'] ?>" class="btn btn-outline-primary btn-sm">Edit</a>
-            <form style="display: inline-block" action="/products/delete" method="post">
+            <a href="/index/update?id=<?php echo $item['PlayerID'] ?>" class="btn btn-outline-primary btn-sm">Edit</a>
+            <form style="display: inline-block" action="/index/delete" method="post">
                 <input type="hidden" name="id" value="<?php echo $item['PlayerID'] ?>">
                 <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
             </form>
-            <a href="/products/info?id=<?php echo $item['PlayerID'] ?>" class="btn btn-outline-primary btn-sm">Info</a>
+            <a href="/index/info?id=<?php echo $item['PlayerID'] ?>" class="btn btn-outline-primary btn-sm">Info</a>
         </td>
         </tr>
     <?php endforeach; ?>

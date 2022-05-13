@@ -13,7 +13,7 @@ class ProductController extends Controller
     public function indexFalse(Request $request){
         $product=new product();
         if($request->isGet()){
-
+            //To do something
         }
         $this->setLayout('auth');
         return $this->render('index',[
@@ -35,26 +35,44 @@ class ProductController extends Controller
         var_dump($products);
         echo '</pre>';*/
     }
-    /*public function create(router $router){
+    public function createFalse(Request $request){
+        $product=new product();
+        if($request->isGet() or $request->isPost()){
+        }
+        $this->setLayout('auth');
+        return $this->render('index',[
+            'model'=>$product
+        ]);
+    }
+    public function create(router $router){
         $errors=[];
         $productData=[
-          'title'=>'',
-          'description'=>'',
-          'image'=>'',
-          'price'=>''
+          'PlayerID'=>'',
+          'FullName'=>'',
+          'ClubID'=>'',
+          'DOB'=>'',
+            'Position'=>'',
+            'Nationality'=>'',
+            'Number'=>''
         ];
         if($_SERVER['REQUEST_METHOD']==='POST'){
-            $productData['title']=$_POST['title'];
-            $productData['description']=$_POST['description'];
-            $productData['imageFile']=$_FILES['image']??null;
-            $productData['price']=(float)$_POST['price'];
+            $productData['PlayerID']=$_POST['PlayerID'];
+            $productData['FullName']=$_POST['FullName'];
+            $productData['ClubID']=$_POST['ClubID'];
+            $productData['DOB']=$_POST['DOB'];
+            $productData['Position']=$_POST['Position'];
+            $productData['Nationality']=$_POST['Nationality'];
+            $productData['Number']=$_POST['Number'];
 
 
             $product =new product();
             $product->load($productData);
             $errors=$product->save();
+            /*echo '<pre>';
+            var_dump($errors);
+            echo '</pre>';*/
             if(empty($errors)){
-                header('Location: /products');
+                header('Location: /index');
                 exit;
             }
         }
@@ -64,24 +82,35 @@ class ProductController extends Controller
                 'errors'=>$errors
             ]);
     }
+    public function updateFalse(Request $request){
+        $product=new product();
+        if($request->isGet() or $request->isPost()){
+        }
+        $this->setLayout('auth');
+        return $this->render('index',[
+            'model'=>$product
+        ]);
+    }
     public function update(router $router){
         $id= $_GET['id']??null;
-        if(!$id){
-            header('Location:/products');
+        /*if(!$id){
+            header('Location:/index');
             exit;
-        }
+        }*/
         $errors=[];
         $productData=$router->db->getProductsByID($id);
         if($_SERVER['REQUEST_METHOD']==='POST'){
-            $productData['title']=$_POST['title'];
-            $productData['description']=$_POST['description'];
-            $productData['imageFile']=$_FILES['image']??null;
-            $productData['price']=(float)$_POST['price'];
+            $productData['FullName']=$_POST['FullName'];
+            $productData['ClubID']=$_POST['ClubID'];
+            $productData['DOB']=$_POST['DOB'];
+            $productData['Position']=$_POST['Position'];
+            $productData['Nationality']=$_POST['Nationality'];
+            $productData['Number']=$_POST['Number'];
             $product =new product();
             $product->load($productData);
             $errors=$product->save();
             if(empty($errors)){
-                header('Location: /products');
+                header('Location: /index');
                 exit;
             }
         }
@@ -91,24 +120,42 @@ class ProductController extends Controller
         ]);
 
     }
+    public function DeleteFalse(Request $request){
+        $product=new product();
+        if($request->isGet() or $request->isPost()){
+        }
+        $this->setLayout('auth');
+        return $this->render('index',[
+            'model'=>$product
+        ]);
+    }
     public function delete(router $router){
         $id=$_POST['id']??null;
         if(!$id){
-            header('Location:/products');
+            header('Location:/index');
             exit;
         }
         $router->db->deleteProduct($id);
-        header('Location:/products');
+        header('Location:/index');
     }
     public function info(router $router){
         $id= $_GET['id']??null;
         if(!$id){
-            header('Location:/products');
+            header('Location:/index');
             exit;
         }
         $productData=$router->db->getProductsByID($id);
         $router->renderView('products/info',[
             'product'=>$productData
         ]);
-    }*/
+    }
+    public function infoFalse(Request $request){
+        $product=new product();
+        if($request->isGet() or $request->isPost()){
+        }
+        $this->setLayout('auth');
+        return $this->render('index',[
+            'model'=>$product
+        ]);
+    }
 }

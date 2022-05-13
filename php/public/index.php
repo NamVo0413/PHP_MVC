@@ -32,9 +32,21 @@ $app->router->post('/register',[AuthController::class,'register']);
 #logout
 $app->router->get('/logout',[AuthController::class,'logout']);
 $app->router->get('/index',[ProductController::class,'indexFalse']);
+$app->router->get('/index/create',[new ProductController(),'createFalse']);
+$app->router->post('/index/create',[new ProductController(),'createFalse']);
+$app->router->get('/index/update',[new ProductController(),'updateFalse']);
+$app->router->post('/index/update',[new ProductController(),'updateFalse']);
+$app->router->post('/index/delete',[new ProductController(),'DeleteFalse']);
+$app->router->get('/index/info',[new ProductController(),'infoFalse']);
 if(!Application::isGuest()){
     $router= new router();
     $router->get('/index',[new ProductController(),'index']);
+    $router->get('/index/create',[new ProductController(),'create']);
+    $router->post('/index/create',[new ProductController(),'create']);
+    $router->get('/index/update',[new ProductController(),'update']);
+    $router->post('/index/update',[new ProductController(),'update']);
+    $router->post('/index/delete',[new ProductController(),'delete']);
+    $router->get('/index/info',[new ProductController(),'info']);
     $router->resolve();
 }
 $app->run();

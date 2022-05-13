@@ -17,7 +17,7 @@ class product
 
     public function load($data)
     {
-        $this->PlayerID = $data['PlayerID'] ?? null;
+        $this->PlayerID = $data['PlayerID'];
         $this->FullName = $data['FullName'];
         $this->ClubID = $data['ClubID'];
         $this->DOB = $data['DOB'];
@@ -26,18 +26,23 @@ class product
         $this->Number=$data['Number'];
     }
 
-    /*public function save()
+    public function save()
     {
         $errors = [];
         if (empty($errors)) {
             $db=database::$db;
-            if($this->id){
-                //$db->updateProduct($this);
+            if($this->PlayerID){
+                $db->updateProduct($this);
             }
             else{
-                //$db->createProducts($this);
+                $db->createProducts($this);
+
             }
         }
+        /*echo '<pre>';
+        var_dump($db);
+        echo '</pre>';
+        exit;*/
         return $errors;
-    }*/
+    }
 }
