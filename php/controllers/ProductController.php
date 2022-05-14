@@ -158,4 +158,24 @@ class ProductController extends Controller
             'model'=>$product
         ]);
     }
+    public function getPlayerFromClub(router $router){
+        $id= $_GET['id']??null;
+        if(!$id){
+            header('Location:/clublist');
+            exit;
+        }
+        $productData=$router->db->getPlayerList($id);
+        $router->renderView('products/playerList',[
+            'products'=>$productData
+        ]);
+    }
+    public function BT01(Request $request){
+        $product=new product();
+        if($request->isGet() or $request->isPost()){
+        }
+        $this->setLayout('BT01');
+        return $this->render('BT01',[
+            'model'=>$product
+        ]);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace app;
 use app\models\product;
+use app\models\Club;
 use PDO;
 class database
 {
@@ -56,5 +57,57 @@ class database
         $statement=$this->pdo->prepare('delete from player where PlayerID = :id');
         $statement->bindValue(':id',$id);
         $statement->execute();
+    }
+    public function getClub($search=''){
+        $search=$_GET['search']??'';
+        if($search){
+            $statement=$this->pdo->prepare('Select * from club where ClubName like :ClubName');
+            $statement->bindValue(':ClubName',"%$search%");
+        }
+        else{
+            $statement=$this->pdo -> prepare('Select * from club');
+        }
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getClubByID($id){
+        $statement = $this->pdo->prepare('select * from club where ClubID = :id');
+        $statement ->bindValue(':id',$id);
+        $statement ->execute();
+        return $statement ->fetch(PDO::FETCH_ASSOC);
+    }
+    public function createClub(Club $club){
+        $statement=$this->pdo->prepare('insert into club (ClubID,ClubName,Shortname,StadiumID,CoachID) values (:ClubID,:ClubName,:Shortname,:StadiumID,:CoachID)');
+        $statement->bindValue(':ClubID',$club->ClubID);
+        $statement->bindValue(':ClubName',$club->ClubName);
+        $statement->bindValue(':Shortname',$club->Shortname);
+        $statement->bindValue(':StadiumID',$club->StadiumID);
+        $statement->bindValue(':CoachID',$club->CoachID);
+        $statement->execute();
+    }
+    public function updateClub(Club $club){
+        $statement=$this->pdo->prepare('update club set ClubName=:ClubName,Shortname=:Shortname,StadiumID=:StadiumID,CoachID=:CoachID where ClubID=:ClubID');
+        $statement->bindValue(':ClubID',$club->ClubID);
+        $statement->bindValue(':ClubName',$club->ClubName);
+        $statement->bindValue(':Shortname',$club->Shortname);
+        $statement->bindValue(':StadiumID',$club->StadiumID);
+        $statement->bindValue(':CoachID',$club->CoachID);
+        $statement->execute();
+    }
+    public function deleteClub($id){
+        $statement=$this->pdo->prepare('delete from club where ClubID = :id');
+        $statement->bindValue(':id',$id);
+        $statement->execute();
+    }
+    public function getPlayerList($id){
+        $statement=$this->pdo->prepare('Select * from player where ClubID=:id');
+        $statement->bindValue(':id',$id);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getAllClubID(){
+        $statement=$this->pdo -> prepare('Select * from club');
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 }

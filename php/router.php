@@ -35,7 +35,7 @@ class router
             echo '</pre>';*/
             call_user_func($fn,$this);
         }else{
-            echo "Page not found";
+            echo "";
         }
     }
     public function renderView($view,$param=[]){

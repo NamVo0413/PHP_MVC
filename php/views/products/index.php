@@ -2,6 +2,9 @@
 <p>
     <a href="/index/create" class="btn btn-success">Create Player</a>
 </p>
+<p>
+    <a href="/" class="btn btn-success">Home Page</a>
+</p>
 <form>
     <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Search Player" name="search" value="<?php echo $search ?>">

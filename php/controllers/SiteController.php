@@ -31,4 +31,7 @@ class SiteController extends Controller
     public function index(){
         return $this->render('index');
     }
+    public function fake(){
+        return $this->render('fake');
+    }
 }

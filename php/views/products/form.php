@@ -22,7 +22,7 @@
     </div>
     <div class="mb-3">
         <label>ClubID</label>
-        <input type="text" name="ClubID" class="form-control" value="<?php echo $product['ClubID'] ?>">
+        <input type="text" name="FullName" class="form-control" value="<?php echo $product['ClubID'] ?>">
     </div>
     <div class="mb-3">
         <label>DOB</label>

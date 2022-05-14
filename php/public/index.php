@@ -6,6 +6,7 @@ use app\controllers\SiteController;
 use app\controllers\AuthController;
 use app\router;
 use app\controllers\ProductController;
+use app\controllers\ClubController;
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 $config=[
@@ -38,6 +39,14 @@ $app->router->get('/index/update',[new ProductController(),'updateFalse']);
 $app->router->post('/index/update',[new ProductController(),'updateFalse']);
 $app->router->post('/index/delete',[new ProductController(),'DeleteFalse']);
 $app->router->get('/index/info',[new ProductController(),'infoFalse']);
+$app->router->get('/clublist',[new ClubController(),'clubListFalse']);
+$app->router->get('/clublist/create',[new ClubController(),'createClubFalse']);
+$app->router->post('/clublist/create',[new ClubController(),'createClubFalse']);
+$app->router->get('/clublist/update',[new ClubController(),'updateClubFalse']);
+$app->router->post('/clublist/update',[new ClubController(),'updateClubFalse']);
+$app->router->post('/clublist/delete',[new ClubController(),'deleteClubFalse']);
+$app->router->get('/clublist/playerlist',[new ProductController(),'getPlayerFromClubFalse']);
+$app->router->get('/BT01',[new ProductController(),'BT01']);
 if(!Application::isGuest()){
     $router= new router();
     $router->get('/index',[new ProductController(),'index']);
@@ -47,6 +56,13 @@ if(!Application::isGuest()){
     $router->post('/index/update',[new ProductController(),'update']);
     $router->post('/index/delete',[new ProductController(),'delete']);
     $router->get('/index/info',[new ProductController(),'info']);
+    $router->get('/clublist',[new ClubController(),'clubList']);
+    $router->get('/clublist/create',[new ClubController(),'createClub']);
+    $router->post('/clublist/create',[new ClubController(),'createClub']);
+    $router->get('/clublist/update',[new ClubController(),'updateClub']);
+    $router->post('/clublist/update',[new ClubController(),'updateClub']);
+    $router->post('/clublist/delete',[new ClubController(),'deleteClub']);
+    $router->get('/clublist/playerlist',[new ProductController(),'getPlayerFromClub']);
     $router->resolve();
 }
 $app->run();

@@ -30,6 +30,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/index">Player List</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clublist">Club List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/BT01">BT01</a>
+                </li>
             </ul>
             <?php if(\app\core\Application::isGuest()): ?>
             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">

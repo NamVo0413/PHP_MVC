@@ -1,2 +1,2 @@
-<h1>Create New Product</h1>
+<h1>Create New Player</h1>
 <?php require_once "form.php"?>
